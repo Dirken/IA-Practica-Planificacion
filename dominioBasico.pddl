@@ -45,12 +45,13 @@
 	)
 
 	(:action planning
-	  :parameters (?content - object)
-	  :precondition (and 
+	  :parameters (?content - visual-content)
+	  :precondition 
+	  (and 
 	  	(not (visto ?content)) ;es un contenido que no hemos visto,
 	  	(not (yaPlanificado ?content)) ;es un contenido que no tenemos planificado,
 	  	;si forma parte de este conjunto de conjunto, nos interesa:
-	  	(forall (?c - contenido) 
+	  	(forall (?c - visual-content) 
 	  		(or
 	  		;Tiene un predecesor y lo ha visto o lo hemos planificado
 		  		(and 
@@ -64,8 +65,8 @@
 		  		(not (predecesor ?content ?c))
 		  		;Predecesor de un contenido que queremos ver.
 		  		(and 
-		  			(predecesor ?content ?c)
-		  			(quiereVer ?content ?c)
+		  			(predecesor ?c ?content)
+		  			(quiereVer ?c)
 		  		)
 	  		)
 	  	)

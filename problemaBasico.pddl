@@ -22,24 +22,29 @@
   (:domain visual-content)
 
   (:objects
-    Rambo1 Rambo2 Rocky1 Rocky2 Rocky3 CastilloEnElCielo SpiritedAway - visual-content
+    Rambo1 Rambo2 Rocky1 Rocky2 CastilloEnElCielo SpiritedAway - visual-content
   )
 
   (:init
-    (predecesor Rambo1 Rambo2)
-    (predecesor Rambo2 Rambo3)
+    (predecesor Rambo2 Rambo1)
+	(predecesor Rocky2 Rocky1)
     (visto CastilloEnElCielo)
     (visto Rocky1)
-    (quiereVer  Rambo2)
-    (quiereVer Rocky3)
+    (quiereVer Rambo2)
     (quiereVer SpiritedAway)
   	
   ) 
 
-  (:goal (and
-  	(yaPlanificado Rocky3)
-  	(yaPlanificado Rambo2)
-  	(yaPlanificado SpiritedAway)
+  (:goal 
+  	(and
+  		(yaPlanificado Rocky2)
+	  	(yaPlanificado Rambo2)
+	  	(yaPlanificado SpiritedAway)
+	  	;(yaPlanificado Rocky1)
+	  	)
   	)
-  )
+  ; En este test lo que nos tendría que planificar es lo siguiente:
+  ; - Rocky2 pues ya hemos visto Rocky1.
+  ; - SpiritedAway pues no tiene ninguna dependencia
+  ; - Rambo2 y Rambo1 pues queremos ver la 2 y no hemos visto la 1.
 )
