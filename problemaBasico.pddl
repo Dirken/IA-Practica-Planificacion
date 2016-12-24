@@ -27,6 +27,7 @@
 
   (:init
     (predecesor Rambo1 Rambo2)
+    (predecesor Rambo2 Rambo3)
     (visto CastilloEnElCielo)
     (visto Rocky1)
     (quiereVer  Rambo2)
