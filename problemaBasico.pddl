@@ -27,7 +27,6 @@
 
   (:init
     (predecesor Rambo1 Rambo2)
-    
     (visto CastilloEnElCielo)
     (visto Rocky1)
     (quiereVer  Rambo2)
@@ -37,9 +36,9 @@
   ) 
 
   (:goal (and
-  	(planeado Rocky3)
-  	(planeado Rambo2)
-  	(planeado SpiritedAway)
+  	(yaPlanificado Rocky3)
+  	(yaPlanificado Rambo2)
+  	(yaPlanificado SpiritedAway)
   	)
   )
 )
