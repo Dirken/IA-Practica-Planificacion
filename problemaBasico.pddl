@@ -23,11 +23,12 @@
 
   (:objects
     Rambo1 Rambo2 Rocky1 Rocky2 CastilloEnElCielo SpiritedAway - contenido
+    dia1 dia2 dia3 dia4 dia5 - dia
   )
 
   (:init
     (predecesor Rambo2 Rambo1)
-	(predecesor Rocky2 Rocky1)
+	  (predecesor Rocky2 Rocky1)
     (visto CastilloEnElCielo)
     (visto Rocky1)
     (quiereVer Rambo2)

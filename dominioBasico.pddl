@@ -28,6 +28,8 @@
 
 ;No hay necesidad de diferenciar entre películas y series (imho).
 	(:types contenido)
+	(:types dia)
+
 
 ;los contenidos del catálogo los contenidos predecesores a un contenido
 ;los contenidos paralelos a un contenido ---> En este nivel no.
@@ -35,19 +37,21 @@
 ;los contenidos que el usuario quiere ver
 
 	(:predicates 
-		
 		(predecesor ?content - contenido ?pred - contenido)
 		(visto  ?content - contenido)
 		(quiereVer ?content - contenido)
 ;Puede que ya lo hagamos planificado, se tendría que considerar.
 		(yaPlanificado ?content - contenido)
-
+		(diaOcupado ?d - dia)		
 	)
 
 	(:action planning
-	  :parameters (?content - contenido)
+	  :parameters 
+	  (?content - contenido
+	   ?d - dia)
 	  :precondition 
 	  (and 
+	  	(not (diaOcupado ?d))
 	  	(not (visto ?content)) ;es un contenido que no hemos visto,
 	  	(not (yaPlanificado ?content)) ;es un contenido que no tenemos planificado,
 	  	;si forma parte de este conjunto de conjunto, nos interesa:
@@ -71,6 +75,10 @@
 	  		)
 	  	)
 	  )
-	  :effect (yaPlanificado ?content)
+	  :effect 
+	  	(and
+		  	(diaOcupado ?d)
+		  	(yaPlanificado ?content)
+		)
 	)
 )
