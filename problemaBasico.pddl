@@ -22,7 +22,7 @@
   (:domain visual-content)
 
   (:objects
-    Rambo1 Rambo2 Rocky1 Rocky2 CastilloEnElCielo SpiritedAway - visual-content
+    Rambo1 Rambo2 Rocky1 Rocky2 CastilloEnElCielo SpiritedAway - contenido
   )
 
   (:init

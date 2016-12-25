@@ -36,22 +36,22 @@
 
 	(:predicates 
 		
-		(predecesor ?content - visual-content ?pred - visual-content)
-		(visto  ?content - visual-content)
-		(quiereVer ?content - visual-content)
+		(predecesor ?content - contenido ?pred - contenido)
+		(visto  ?content - contenido)
+		(quiereVer ?content - contenido)
 ;Puede que ya lo hagamos planificado, se tendría que considerar.
-		(yaPlanificado ?content - visual-content)
+		(yaPlanificado ?content - contenido)
 
 	)
 
 	(:action planning
-	  :parameters (?content - visual-content)
+	  :parameters (?content - contenido)
 	  :precondition 
 	  (and 
 	  	(not (visto ?content)) ;es un contenido que no hemos visto,
 	  	(not (yaPlanificado ?content)) ;es un contenido que no tenemos planificado,
 	  	;si forma parte de este conjunto de conjunto, nos interesa:
-	  	(forall (?c - visual-content) 
+	  	(forall (?c - contenido) 
 	  		(or
 	  		;Tiene un predecesor y lo ha visto o lo hemos planificado
 		  		(and 
