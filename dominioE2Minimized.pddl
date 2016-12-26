@@ -58,19 +58,13 @@
 											)
 											(visto ?paral)
 											;;con paralelo
-											(or
-												(and
-													(not (paralelo ?content ?paral))
-													(not (paralelo ?paral ?content))
-											 	)
-											 	(or
-											 		(visto ?paral)
-											 		(not (yaPlanificado ?paral))
-												 	(= (numdia ?d) (diaAsig ?paral))
-												 	(= (numdia ?d) (+ (diaAsig ?paral) 1))
-												 	(= (numdia ?d) (- (diaAsig ?paral) 1))
-											 	)
-											 )
+										 	(or
+										 		(visto ?paral)
+										 		(not (yaPlanificado ?paral))
+											 	(= (numdia ?d) (diaAsig ?paral))
+											 	(= (numdia ?d) (+ (diaAsig ?paral) 1))
+											 	(= (numdia ?d) (- (diaAsig ?paral) 1))
+										 	)
 										)
 										
 										
