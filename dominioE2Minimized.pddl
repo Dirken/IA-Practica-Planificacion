@@ -25,10 +25,13 @@
 				(not (visto ?content))
 				(not (yaPlanificado ?content))
 				(and
-					;; contenido sin predecesor
-					(forall (?pred - contenido) (or
+					
+					(forall (?pred - contenido) 
+										;; contenido sin predecesor
+										(or
 											(not (predecesor ?content ?pred))
 											(visto ?pred)
+											;; contenido con predecesor
 											(or
 												(not (predecesor ?content ?pred))
 												(and
@@ -43,18 +46,18 @@
 												)
 											)
 										)
-					;; contenido con predecesor
+					
 										
 					)
-					;;  sin paralelo
 					(forall (?paral - contenido) 
 										;sin paralelo
 										(or
 											(and
 												(not (paralelo ?content ?paral))
 												(not (paralelo ?paral ?content))
-											 )
+											)
 											(visto ?paral)
+											;;con paralelo
 											(or
 												(and
 													(not (paralelo ?content ?paral))
@@ -69,7 +72,7 @@
 											 	)
 											 )
 										)
-										;;con paralelo
+										
 										
 					)
 				)
