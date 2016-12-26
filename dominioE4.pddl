@@ -6,6 +6,8 @@
 
 	(:functions
 		(numdia ?d - dia)
+		(minutosOcupados ?d - dia)
+		(minutos ?content - contenido)
 		(diaAsig ?content - contenido)
 	)
 
@@ -25,7 +27,7 @@
 				(not (visto ?content))
 				(not (yaPlanificado ?content))
 				(and
-					
+					(>= 200 (+ (minutos ?content) (minutosOcupados ?d)))
 					(forall (?pred - contenido) 
 										;; contenido sin predecesor
 										(or
@@ -88,6 +90,7 @@
 				)
 				(yaPlanificado ?content)
 				(increase (diaAsig ?content) (numdia ?d))
+				(increase (minutosOcupados ?d) (minutos ?content))
 			)
 	)
 )
