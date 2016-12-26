@@ -22,10 +22,13 @@ int main(){
 	cout << "Please indicate the number of tests that you would like to create:";
 	cin >> number_tests;
 
-	for (int i = 0; i < 1; ++i){
+	for (int i = 0; i < number_tests; ++i){
 		
+		stringstream sstm;
+		sstm << "problem" << i;
+		string result =sstm.str();
 		//Create document
-		ofstream outputFile("problem"+i);
+		ofstream outputFile(result.c_str());
 
 		outputFile << "(define (problem visual-content-problem)" << endl;
 		outputFile << "(:domain visual-content)" << endl;
