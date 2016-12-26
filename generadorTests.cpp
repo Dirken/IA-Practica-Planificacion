@@ -54,7 +54,7 @@ int main(){
 		outputFile << "(:objects" << endl;
 		/* generate secret number between 1 and 100 */
   		int random_number = rand() % 100 +1;
-  		vector<test> v(random_number);
+  		vector<string> v(random_number);
 		//Objects
 
 		for (int j = 0; j < random_number; ++j){
@@ -62,21 +62,23 @@ int main(){
 			sstm << "content" << j;
 			string result = sstm.str();
 			outputFile << result << " ";
-			v[j].nombre = result;
+			v[j] = result;
 		}
+		random_number = rand() % random_number +1; //así tenemos algo del rango con los contenidos
+		vector<string> v2(random_number);
 		if (version == 0) outputFile <<"- contenido)" << endl;
 		//si tenemos que es de las extensiones 1 o superior, tenemos también que tener en cuenta
 		//que hay otro parámetro que es el de días.
+
 		else {
 			outputFile <<"- contenido" << endl;
-			random_number = rand() % random_number +1; //así tenemos algo del rango con los contenidos
-			vector<dia> v2(random_number);
+
 			for (int j = 0; j < random_number; ++j){
 				stringstream sstm;
 				sstm << "dia" << j;
 				string result = sstm.str();
 				outputFile << result << " ";
-				v2[j].numero = result;
+				v2[j] = result;
 			}
 			outputFile <<"- dia)" << endl;
 		}
@@ -86,6 +88,21 @@ int main(){
 		int random_option;
 		int random_pick;
 		outputFile << "(:init" << endl;
+		//related with days:
+		if (version > 1){
+			for (int j = 0; j < v2.size(); ++j){
+				stringstream sstm;
+				sstm << v2[j]+ ")" << j;
+				string result = sstm.str();
+				outputFile << "(= (numdia"+ result +")" << endl;
+				
+			}
+		}
+
+		for (int j = 0; j < v.size(); ++j){
+			outputFile << "(= (diaAsig "+ v[j]+") 0 )" << endl;
+		}
+		//predictes content:
 		for (int j = 0; j < v.size(); ++j){
 			random_option = rand() % 4 + 1;
 			if (random_option == 1){ //predecesor
@@ -93,19 +110,21 @@ int main(){
 				while (j == random_pick){
 					random_pick = rand()%v.size();
 				}
-				outputFile << "(predecesor "+v[random_pick].nombre+' '+v[j].nombre+")" << endl;
-				v[j].tipo = "predecesor";
+				outputFile << "(predecesor "+v[random_pick]+' '+v[j]+")" << endl;
 			}
 			else if (random_option == 2){ //Visto
-				outputFile << "(visto "+v[j].nombre+")" << endl;
-				v[j].tipo = "visto";
+				outputFile << "(visto "+v[j]+")" << endl;
 			}
 			else if (random_option == 3){//quiereVer
-				outputFile <<"(quiereVer "+v[j].nombre+")"<< endl;
-				v[j].tipo = "quiereVer";
+				outputFile <<"(quiereVer "+v[j]+")"<< endl;
+
 			}
 			else if (random_option == 4 and version > 1){//paralelo
-
+				random_pick = rand()%v.size();
+				while (j == random_pick){
+					random_pick = rand()%v.size();
+				}
+				outputFile << "(paralelo "+v[j]+ ' ' +v[random_pick]+")" << endl;
 			}
 		}
 		outputFile << ")" << endl;
@@ -116,7 +135,7 @@ int main(){
 	}
 		/*for (int j = 0; j < v.size(); ++j){
 			if(v[j].tipo == "quiereVer") {
-				outputFile << "(yaPlanificado "+v[j].nombre+ ")" << endl;
+				outputFile << "(yaPlanificado "+v[j]+ ")" << endl;
 			}
 		}
 		outputFile << ")))"<<endl;
