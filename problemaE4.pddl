@@ -28,12 +28,12 @@
 ;;    (libroleido lib6)
   ) 
 
-  (:goal (forall (?lib - libro) 
+  (:goal (forall (?content - contenido) 
             (or 
-              (not (quiereVer ?lib))
+              (not (quiereVer ?content))
               (and
-                (quiereVer ?lib)
-                (yaPlanificado ?lib)
+                (quiereVer ?content)
+                (yaPlanificado ?content)
               )
             )
           )
