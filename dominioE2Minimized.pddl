@@ -29,21 +29,22 @@
 					(forall (?pred - contenido) (or
 											(not (predecesor ?content ?pred))
 											(visto ?pred)
-										)
-					;; contenido con predecesor
-										(or
-											(not (predecesor ?content ?pred))
-											(and
-												(predecesor ?content ?pred)
-												(or
-													(visto ?pred)
-													(and
-														(yaPlanificado ?pred)
-														(> (numdia ?d) (diaAsig ?pred))
+											(or
+												(not (predecesor ?content ?pred))
+												(and
+													(predecesor ?content ?pred)
+													(or
+														(visto ?pred)
+														(and
+															(yaPlanificado ?pred)
+															(> (numdia ?d) (diaAsig ?pred))
+														)
 													)
 												)
 											)
 										)
+					;; contenido con predecesor
+										
 					)
 					;;  sin paralelo
 					(forall (?paral - contenido) 
@@ -54,21 +55,22 @@
 												(not (paralelo ?paral ?content))
 											 )
 											(visto ?paral)
+											(or
+												(and
+													(not (paralelo ?content ?paral))
+													(not (paralelo ?paral ?content))
+											 	)
+											 	(or
+											 		(visto ?paral)
+											 		(not (yaPlanificado ?paral))
+												 	(= (numdia ?d) (diaAsig ?paral))
+												 	(= (numdia ?d) (+ (diaAsig ?paral) 1))
+												 	(= (numdia ?d) (- (diaAsig ?paral) 1))
+											 	)
+											 )
 										)
 										;;con paralelo
-										(or
-											(and
-												(not (paralelo ?content ?paral))
-												(not (paralelo ?paral ?content))
-										 	)
-										 	(or
-										 		(visto ?paral)
-										 		(not (yaPlanificado ?paral))
-											 	(= (numdia ?d) (diaAsig ?paral))
-											 	(= (numdia ?d) (+ (diaAsig ?paral) 1))
-											 	(= (numdia ?d) (- (diaAsig ?paral) 1))
-										 	)
-										 )
+										
 					)
 				)
 			)
