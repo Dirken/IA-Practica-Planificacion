@@ -33,7 +33,7 @@ string createNameDocument(int i){
 	stringstream sstm;
 	sstm << "problem" << i;
 	string result =sstm.str();
-	return result;
+	return result+".pddl";
 }
 
 int main(){
