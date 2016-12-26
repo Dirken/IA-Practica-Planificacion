@@ -13,6 +13,10 @@ struct test{
 	string tipo;
 };
 
+struct dia{
+	string numero;
+};
+
 void printTests(){
 	cout << "Please indicate the number of tests that you would like to create:";
 }
@@ -42,7 +46,6 @@ int main(){
 	printOptions();
 	cin >> version;
 
-	
 	for (int i = 0; i < number_tests; ++i){
 		createNameDocument(i);
 		ofstream outputFile(createNameDocument(i).c_str());	
@@ -57,12 +60,28 @@ int main(){
 		for (int j = 0; j < random_number; ++j){
 			stringstream sstm;
 			sstm << "content" << j;
-			string result =sstm.str();
+			string result = sstm.str();
 			outputFile << result << " ";
 			v[j].nombre = result;
 		}
-		outputFile <<"- visual-content)" << endl;
-		
+		if (version == 0) outputFile <<"- contenido)" << endl;
+		//si tenemos que es de las extensiones 1 o superior, tenemos también que tener en cuenta
+		//que hay otro parámetro que es el de días.
+		else {
+			outputFile <<"- contenido" << endl;
+			random_number = rand() % random_number +1; //así tenemos algo del rango con los contenidos
+			vector<dia> v2(random_number);
+			for (int j = 0; j < random_number; ++j){
+				stringstream sstm;
+				sstm << "dia" << j;
+				string result = sstm.str();
+				outputFile << result << " ";
+				v2[j].numero = result;
+			}
+			outputFile <<"- dia)" << endl;
+		}
+
+
 		//Tot el init:
 		int random_option;
 		int random_pick;
@@ -85,18 +104,22 @@ int main(){
 				outputFile <<"(quiereVer "+v[j].nombre+")"<< endl;
 				v[j].tipo = "quiereVer";
 			}
-			else{//paralelo
+			else if (random_option == 4 and version > 1){//paralelo
+
 			}
 		}
 		outputFile << ")" << endl;
 
 		//goal: 
-		for (int j = 0; j < v.size(); ++j){
+		outputFile << "(:goal (forall (?content - contenido) (or (not (quiereVer ?content))" << endl;
+		outputFile << "(and (quiereVer ?content)(yaPlanificado ?content)))))" << endl;
+	}
+		/*for (int j = 0; j < v.size(); ++j){
 			if(v[j].tipo == "quiereVer") {
 				outputFile << "(yaPlanificado "+v[j].nombre+ ")" << endl;
 			}
 		}
 		outputFile << ")))"<<endl;
 		outputFile.close();
-	}
+	}*/
 }
