@@ -1,37 +1,74 @@
-(define (problem problemaE2)
+(define (problem problemaE3b)
   
   (:domain visual-content)
 
   (:objects
-      lib1 lib2 lib3 lib4 lib5 lib6 lib7 lib8 lib9 lib10 lib11 lib12 lib13 lib14 - contenido
-      dia12 dia11 dia10 dia9 dia8 dia7 dia6 dia5 dia4 dia3 dia2 dia1 - dia
+    breakingBad01 breakingBad02 breakingBad03
+    narcos1 narcos2 narcos3
+    pokemon1 pokemon2 pokemon3
+    juegoDeTronos1 juegoDeTronos2 juegoDeTronos3
+     - contenido
+    dia01 dia02 dia03 dia04 dia05 dia06 dia07 dia08 dia09 dia10 dia11 - dia 
   )
+
 
   (:init
-    (= (numdia dia1) 1)(= (numdia dia2) 2)(= (numdia dia3) 3)(= (numdia dia4) 4)(= (numdia dia5) 5)(= (numdia dia6) 6)
-    (= (numdia dia7) 7)(= (numdia dia8) 8)(= (numdia dia9) 9)(= (numdia dia10) 10)(= (numdia dia11) 11)(= (numdia dia12) 12)
-    (= (diaAsig lib1) 0)(= (diaAsig lib2) 0)(= (diaAsig lib3) 0)(= (diaAsig lib4) 0)(= (diaAsig lib5) 0)(= (diaAsig lib6) 0)
-    (= (diaAsig lib7) 0)(= (diaAsig lib8) 0)(= (diaAsig lib9) 0)(= (diaAsig lib10) 0)(= (diaAsig lib11) 0)(= (diaAsig lib12) 0)
-    (= (diaAsig lib13) 0)(= (diaAsig lib14) 0)
-    
-    (quiereVer lib4)
-    (predecesor lib4 lib3)
-    (predecesor lib3 lib2)
-    (predecesor lib2 lib1)
-    (paralelo lib3 lib14)
-    (paralelo lib4 lib13)
-    (predecesor lib13 lib12)
-    (predecesor lib14 lib13)
+    (= (numdia dia01) 01)   (= (numAsig dia01) 0)
+    (= (numdia dia02) 02)   (= (numAsig dia02) 0)
+    (= (numdia dia03) 03)   (= (numAsig dia03) 0)
+    (= (numdia dia04) 04)   (= (numAsig dia04) 0)
+    (= (numdia dia05) 05)   (= (numAsig dia05) 0)
+    (= (numdia dia06) 06)   (= (numAsig dia06) 0)
+    (= (numdia dia07) 07)   (= (numAsig dia07) 0)
+    (= (numdia dia08) 08)   (= (numAsig dia08) 0)
+    (= (numdia dia09) 09)   (= (numAsig dia09) 0)
+    (= (numdia dia10) 10)   (= (numAsig dia10) 0)
+    (= (numdia dia11) 11)   (= (numAsig dia11) 0)
+  
+    ;; Breaking Bad
+
+    (= (diaAsig breakingBad01) 0)
+    (= (diaAsig breakingBad02) 0)
+    (= (diaAsig breakingBad03) 0)
+
+    (predecesor breakingBad02 breakingBad01)
+    (predecesor breakingBad03 breakingBad02)
+
+    (= (diaAsig narcos1) 0)
+    (= (diaAsig narcos2) 0)
+    (= (diaAsig narcos3) 0)
+
+    (predecesor narcos2 narcos1)
+    (predecesor narcos3 narcos2)
+
+    (= (diaAsig pokemon1) 0)
+    (= (diaAsig pokemon2) 0)
+    (= (diaAsig pokemon3) 0)
+
+    (predecesor pokemon2 pokemon1)
+    (predecesor pokemon3 pokemon2)
+
+    (= (diaAsig juegoDeTronos1) 0)
+    (= (diaAsig juegoDeTronos2) 0)
+    (= (diaAsig juegoDeTronos3) 0)
+
+    (predecesor juegoDeTronos2 juegoDeTronos1)
+    (predecesor juegoDeTronos3 juegoDeTronos2)
+
+    ;; Que quiere ver
+    (quiereVer breakingBad03)
+    (quiereVer narcos3)
+    (quiereVer pokemon3)
+    (quiereVer juegoDeTronos3)
   ) 
 
-  (:goal (forall (?lib - contenido) 
-            (or 
-              (not (quiereVer ?lib))
-              (and
-                (quiereVer ?lib)
-                (yaPlanificado ?lib)
-              )
-            )
-          )
-  )
+  (:goal (forall (?cont - contenido) 
+    (or 
+      (not (quiereVer ?cont))
+      (and
+        (quiereVer ?cont)
+        (yaPlanificado ?cont)
+      )
+    )
+  ) )
 )

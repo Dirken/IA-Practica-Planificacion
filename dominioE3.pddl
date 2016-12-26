@@ -7,6 +7,7 @@
 	(:functions
 		(numdia ?d - dia)
 		(diaAsig ?content - contenido)
+		(numAsig ?d - dia)
 	)
 
 	(:predicates
@@ -22,155 +23,56 @@
 			(?content - contenido ?d - dia)
 		:precondition
 			(and
+				(< (numAsig ?d) 3)
 				(not (visto ?content))
 				(not (yaPlanificado ?content))
-				(forall (?pred - contenido) (or
+				(and
+					
+					(forall (?pred - contenido) 
+										;; contenido sin predecesor
+										(or
 											(not (predecesor ?content ?pred))
 											(visto ?pred)
-										)
-				)
-				(forall (?paral - contenido) (or
-											(and
-												(not (paralelo ?content ?paral))
-												(not (paralelo ?paral ?content))
-											 )
-											(visto ?paral)
-										)
-				)
-			)
-		:effect
-			(and 
-				(forall (?paral - contenido) (when (or 
-                                	(paralelo ?content ?paral)
-									(paralelo ?paral ?content)
-                              )
-                            (quiereVer ?paral)
-                        )
-				)
-				(yaPlanificado ?content)
-				(increase (diaAsig ?content) (numdia ?d))
-			)
-	)
-	;; contenido con predecesor y sin paralelo
-	(:action segundo
-		:parameters
-			(?content - contenido ?d - dia)
-		:precondition
-			(and
-				(not (visto ?content))
-				(not (yaPlanificado ?content))
-				(forall (?pred - contenido) (or
-											(not (predecesor ?content ?pred))
-											(and
-												(predecesor ?content ?pred)
-												(or
-													(visto ?pred)
-													(and
-														(yaPlanificado ?pred)
-														(> (numdia ?d) (diaAsig ?pred))
+											;; contenido con predecesor
+											(or
+												(not (predecesor ?content ?pred))
+												(and
+													(predecesor ?content ?pred)
+													(or
+														(visto ?pred)
+														(and
+															(yaPlanificado ?pred)
+															(> (numdia ?d) (diaAsig ?pred))
+														)
 													)
 												)
 											)
 										)
-				)
-				(forall (?paral - contenido) (or
+					
+										
+					)
+					(forall (?paral - contenido) 
+										(or
+											;sin paralelo
 											(and
 												(not (paralelo ?content ?paral))
 												(not (paralelo ?paral ?content))
-											 )
-											(visto ?paral)
-										)
-				)
-			)
-		:effect
-			(and 
-				(forall (?paral - contenido) (when (or 
-                                	(paralelo ?content ?paral)
-									(paralelo ?paral ?content)
-                              )
-                            (quiereVer ?paral)
-                        )
-				)
-				(yaPlanificado ?content)
-				(increase (diaAsig ?content) (numdia ?d))
-			)
-	)
-		;; contenido sin predecesor y con paralelo
-	(:action tercero
-		:parameters
-			(?content - contenido ?d - dia)
-		:precondition
-			(and
-				(not (visto ?content))
-				(not (yaPlanificado ?content))
-				(forall (?pred - contenido) (or
-											(not (predecesor ?content ?pred))
-											(visto ?pred)
-										)
-				)
-				(forall (?paral - contenido) (or
-											(and
-												(not (paralelo ?content ?paral))
-												(not (paralelo ?paral ?content))
-										 	)
-										 	(or
-										 		(visto ?paral)
-										 		(not (yaPlanificado ?paral))
-											 	(= (numdia ?d) (diaAsig ?paral))
-											 	(= (numdia ?d) (+ (diaAsig ?paral) 1))
-											 	(= (numdia ?d) (- (diaAsig ?paral) 1))
-										 	)
-										 )
-				)
-			)
-		:effect
-			(and 
-				(forall (?paral - contenido) (when (or 
-                                	(paralelo ?content ?paral)
-									(paralelo ?paral ?content)
-                              )
-                            (quiereVer ?paral)
-                        )
-				)
-				(yaPlanificado ?content)
-				(increase (diaAsig ?content) (numdia ?d))
-			)
-	)
-	;; contenido con predecesor y con paralelo
-	(:action cuarto
-		:parameters
-			(?content - contenido ?d - dia)
-		:precondition
-			(and
-				(not (visto ?content))
-				(not (yaPlanificado ?content))
-				(forall (?pred - contenido) (or
-											(not (predecesor ?content ?pred))
-											(and
-												(predecesor ?content ?pred)
-												(or
-													(visto ?pred)
-													(and
-														(yaPlanificado ?pred)
-														(> (numdia ?d) (diaAsig ?pred))
-													)
-												)
 											)
+											(visto ?paral)
+											;;con paralelo
+											(or
+											 	(or
+											 		(visto ?paral)
+											 		(not (yaPlanificado ?paral))
+												 	(= (numdia ?d) (diaAsig ?paral))
+												 	(= (numdia ?d) (+ (diaAsig ?paral) 1))
+												 	(= (numdia ?d) (- (diaAsig ?paral) 1))
+											 	)
+											 )
 										)
-				)
-				(forall (?paral - contenido) (or
-											(and
-												(not (paralelo ?content ?paral))
-												(not (paralelo ?paral ?content))
-										 	)
-										 	(or
-										 		(visto ?paral)
-										 		(not (yaPlanificado ?paral))
-											 	(= (numdia ?d) (diaAsig ?paral))
-											 	(= (numdia ?d) (+ (diaAsig ?paral) 1))
-											 	(= (numdia ?d) (- (diaAsig ?paral) 1))
-										 	)
-										 )
+										
+										
+					)
 				)
 			)
 		:effect
@@ -184,6 +86,7 @@
 				)
 				(yaPlanificado ?content)
 				(increase (diaAsig ?content) (numdia ?d))
+				(increase (numAsig ?d) 1)
 			)
 	)
 )
