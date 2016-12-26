@@ -4,7 +4,7 @@
   (:domain visual-content)
 
   (:objects
-      lib1 lib2 lib3 lib4 lib5 lib6 lib7 lib8 lib9 lib10 lib11 lib12 lib13 lib14 - content
+      lib1 lib2 lib3 lib4 lib5 lib6 lib7 lib8 lib9 lib10 lib11 lib12 lib13 lib14 - contenido
       dia12 dia11 dia10 dia9 dia8 dia7 dia6 dia5 dia4 dia3 dia2 dia1 - dia
   )
 
