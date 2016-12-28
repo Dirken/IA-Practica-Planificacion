@@ -29,18 +29,15 @@
     (quiereVer KillBill2)
   ) 
 
-  (:goal (forall (?content - contenido) 
-    (or 
-      (not (quiereVer ?content))
-      (and
-        (quiereVer ?content)
-        (yaPlanificado ?content)
+  (:goal 
+    (forall (?content - contenido) 
+      (or 
+        (not (quiereVer ?content))
+        (and
+          (quiereVer ?content)
+          (yaPlanificado ?content)
+        )
       )
     )
   )
-  )
-  ; En este test lo que nos tendría que planificar es lo siguiente:
-  ; - Rocky2 pues ya hemos visto Rocky1.
-  ; - SpiritedAway pues no tiene ninguna dependencia
-  ; - Rambo2 y Rambo1 pues queremos ver la 2 y no hemos visto la 1.
 )

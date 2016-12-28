@@ -32,8 +32,4 @@
       )
     )
   )
-  ; En este test lo que nos tendría que planificar es lo siguiente:
-  ; - Rocky3 y como consecuencia de ello, en días anteriores Rocky 2 y Rocky1.
-  ; - SpiritedAway pues no tiene ninguna dependencia
-  ; - Rambo2 y Rambo1 pues queremos ver la 2 y no hemos visto la 1.
 )

@@ -24,8 +24,6 @@
     (= (numdia dia09) 09)   (= (numAsig dia09) 0)
     (= (numdia dia10) 10)   (= (numAsig dia10) 0)
     (= (numdia dia11) 11)   (= (numAsig dia11) 0)
-  
-    ;; Breaking Bad
 
     (= (diaAsig breakingBad01) 0)
     (= (diaAsig breakingBad02) 0)
@@ -56,6 +54,7 @@
     (predecesor juegoDeTronos3 juegoDeTronos2)
 
     ;; Que quiere ver
+    
     (quiereVer breakingBad03)
     (quiereVer narcos3)
     (quiereVer pokemon3)

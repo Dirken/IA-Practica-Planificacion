@@ -25,8 +25,6 @@
     (= (numdia dia10) 10)   (= (minutosOcupados dia10) 0)
     (= (numdia dia11) 11)   (= (minutosOcupados dia11) 0)
   
-    ;; Breaking Bad
-
     (= (diaAsig breakingBad01) 0) (= (minutos breakingBad01) 45)
     (= (diaAsig breakingBad02) 0) (= (minutos breakingBad02) 45)
     (= (diaAsig breakingBad03) 0) (= (minutos breakingBad03) 45)
@@ -64,6 +62,7 @@
     (predecesor juegoDeTronos3 juegoDeTronos2)
 
     ;; Que quiere ver
+    
     (quiereVer breakingBad03)
     (quiereVer narcos3)
     (quiereVer ElSenorDeLosAnillos3)

@@ -25,8 +25,6 @@
     (= (numdia dia10) 10)   (= (numAsig dia10) 0)
     (= (numdia dia11) 11)   (= (numAsig dia11) 0)
 
-    ;; Peliculas
-
     (= (diaAsig django) 0)
     (= (diaAsig elOrfanato) 0)
     (= (diaAsig jumanji) 0)

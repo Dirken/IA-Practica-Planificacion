@@ -25,8 +25,6 @@
     (= (numdia dia10) 10)   (= (minutosOcupados dia10) 0)
     (= (numdia dia11) 11)   (= (minutosOcupados dia11) 0)
 
-    ;; Peliculas
-
     (= (diaAsig django) 0)      (= (minutos django) 20)
     (= (diaAsig elOrfanato) 0)  (= (minutos elOrfanato) 20)
     (= (diaAsig jumanji) 0)     (= (minutos jumanji) 30)

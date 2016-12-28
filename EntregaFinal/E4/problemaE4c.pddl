@@ -23,8 +23,6 @@
     (= (numdia dia09) 09)   (= (minutosOcupados dia09) 0)
     (= (numdia dia10) 10)   (= (minutosOcupados dia10) 0)
     (= (numdia dia11) 11)   (= (minutosOcupados dia11) 0)
-  
-    ;; Breaking Bad
 
     (= (diaAsig breakingBad01) 0) (= (minutos breakingBad01) 45)
     (= (diaAsig breakingBad02) 0) (= (minutos breakingBad02) 45)
@@ -45,8 +43,6 @@
     (predecesor breakingBad08 breakingBad07)
     (predecesor breakingBad09 breakingBad08)
 
-    ;; Narcos
-
     (= (diaAsig narcos1) 0) (= (minutos narcos1) 32)
     (= (diaAsig narcos2) 0) (= (minutos narcos2) 32)
     (= (diaAsig narcos3) 0) (= (minutos narcos3) 32)
@@ -56,11 +52,9 @@
 
     (predecesor narcos2 narcos1)
     (predecesor narcos3 narcos2)
-    (predecesor narcos4 narcos3)
+    (paralelo narcos4 narcos3)
     (predecesor narcos5 narcos4)
     (predecesor narcos6 narcos5)
-
-    ;; Peliculas
 
     (= (diaAsig Jumanji) 0) (= (minutos Jumanji) 160)
 
